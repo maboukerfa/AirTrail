@@ -7,6 +7,7 @@
 
   import { PageHeader } from '.';
 
+  import { resolve } from '$app/paths';
   import { invalidateAll } from '$app/navigation';
   import { Locked } from '$lib/components/helpers';
   import * as Form from '$lib/components/ui/form';
@@ -35,12 +36,12 @@
     },
   );
   const { form: formData, enhance } = form;
-
+  const actionPath = resolve(`/api/integrations/config/save`);
   let savedKey: string | null = $state(null);
 
   onMount(async () => {
     try {
-      const res = await fetch('/api/integrations/config/get');
+      const res = await fetch(resolve('/api/integrations/config/get'));
       if (res.ok) {
         const data = await res.json();
         savedKey = data.aeroDataBoxKey ?? null;
@@ -64,7 +65,7 @@
 >
   <form
     method="POST"
-    action="/api/integrations/config/save"
+    action={actionPath}
     autocomplete="off"
     class="space-y-4"
     use:enhance

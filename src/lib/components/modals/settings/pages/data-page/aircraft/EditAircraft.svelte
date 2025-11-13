@@ -6,6 +6,7 @@
 
   import AircraftFormFields from './AircraftFormFields.svelte';
 
+  import { resolve } from '$app/paths';
   import { Button } from '$lib/components/ui/button';
   import * as Dialog from '$lib/components/ui/dialog';
   import * as Form from '$lib/components/ui/form';
@@ -40,6 +41,7 @@
     },
   );
   const { enhance } = form;
+  const actionPath = resolve(`/api/aircraft/save/form`);
 </script>
 
 <Dialog.Root bind:open>
@@ -58,7 +60,7 @@
     <h2>Edit Aircraft</h2>
     <form
       method="POST"
-      action="/api/aircraft/save/form"
+      action={actionPath}
       use:enhance
       class="grid gap-4"
     >

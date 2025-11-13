@@ -6,6 +6,7 @@
 
   import ShareFormFields from './ShareFormFields.svelte';
 
+  import { resolve } from '$app/paths';
   import { Button } from '$lib/components/ui/button';
   import * as Form from '$lib/components/ui/form';
   import { Modal } from '$lib/components/ui/modal';
@@ -33,6 +34,7 @@
     },
   );
   const { enhance } = form;
+  const actionPath = resolve(`/api/share/save/form`);
 </script>
 
 <Button onclick={() => (open = true)} variant="outline">
@@ -44,7 +46,7 @@
   <h2 class="text-lg font-medium">Create Share</h2>
   <form
     method="POST"
-    action="/api/share/save/form"
+    action={actionPath}
     class="grid gap-4"
     use:enhance
   >

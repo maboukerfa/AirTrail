@@ -5,6 +5,7 @@
   import { superForm } from 'sveltekit-superforms';
   import { zod } from 'sveltekit-superforms/adapters';
 
+  import { resolve } from '$app/paths';
   import { goto } from '$app/navigation';
   import * as Form from '$lib/components/ui/form';
   import { Globe } from '$lib/components/ui/globe';
@@ -32,6 +33,7 @@
     },
   });
   const { form: formData, enhance, submitting } = form;
+  const actionPath = resolve(`/api/users/setup`);
 </script>
 
 <div class="h-full grid lg:grid-cols-2">
@@ -45,7 +47,7 @@
       </div>
       <form
         method="POST"
-        action="/api/users/setup"
+        action={actionPath}
         use:enhance
         class="grid gap-4"
       >

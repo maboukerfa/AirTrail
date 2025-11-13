@@ -8,6 +8,7 @@
   import SeatInformation from './SeatInformation.svelte';
 
   import { page } from '$app/state';
+  import { resolve } from '$app/paths';
   import { AirportField, DateTimeField } from '$lib/components/form-fields';
   import * as Form from '$lib/components/ui/form';
   import { Modal } from '$lib/components/ui/modal';
@@ -36,6 +37,7 @@
     },
   );
   const { form: formData, enhance } = form;
+  const actionPath = resolve(`/api/flight/save/form`);
 
   $effect(() => {
     if ($formData.seats[0] && $formData.seats[0].userId === '<USER_ID>') {
@@ -48,7 +50,7 @@
   <h2 class="text-lg font-medium">Add Flight</h2>
   <form
     method="POST"
-    action="/api/flight/save/form"
+    action={actionPath}
     class="grid gap-4"
     use:enhance
   >

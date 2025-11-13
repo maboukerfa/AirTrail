@@ -9,6 +9,7 @@
   import * as Select from '$lib/components/ui/select';
   import { toTitleCase } from '$lib/utils';
   import { editUserSchema } from '$lib/zod/user';
+  import { resolve } from '$app/paths';
 
   const form = superForm(
     defaults<Infer<typeof editUserSchema>>(page.data.user, zod(editUserSchema)),
@@ -27,11 +28,12 @@
     },
   );
   const { form: formData, enhance } = form;
+  const actionPath = resolve(`/api/users/edit`);
 </script>
 
 <form
   method="POST"
-  action="/api/users/edit"
+  action={actionPath}
   use:enhance
   class="flex flex-col gap-2"
 >

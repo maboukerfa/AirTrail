@@ -6,6 +6,7 @@
 
   import AirlineFormFields from './AirlineFormFields.svelte';
 
+  import { resolve } from '$app/paths';
   import { Button } from '$lib/components/ui/button';
   import * as Form from '$lib/components/ui/form';
   import { Modal } from '$lib/components/ui/modal';
@@ -34,6 +35,7 @@
     },
   );
   const { enhance } = form;
+  const actionPath = resolve(`/api/airline/save/form`);
 </script>
 
 {#if !withoutTrigger}
@@ -47,7 +49,7 @@
   <h2 class="text-lg font-medium">Add Airline</h2>
   <form
     method="POST"
-    action="/api/airline/save/form"
+    action={actionPath}
     class="grid gap-4"
     use:enhance
   >

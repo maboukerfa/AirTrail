@@ -4,6 +4,7 @@
   import { defaults, type Infer, superForm } from 'sveltekit-superforms';
   import { zod } from 'sveltekit-superforms/adapters';
 
+  import { resolve } from '$app/paths';
   import { AirportField, DateTimeField } from '$lib/components/form-fields';
   import FlightInformation from '$lib/components/modals/add-flight/FlightInformation.svelte';
   import FlightNumber from '$lib/components/modals/add-flight/FlightNumber.svelte';
@@ -69,6 +70,7 @@
     },
   );
   const { form: formData, enhance } = form;
+  const actionPath = resolve(`/api/flight/save/form`);
 </script>
 
 <Dialog.Root bind:open>
@@ -92,7 +94,7 @@
     <h2 class="text-lg font-medium">Edit Flight</h2>
     <form
       method="POST"
-      action="/api/flight/save/form"
+      action={actionPath}
       use:enhance
       class="grid gap-4"
     >

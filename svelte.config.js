@@ -7,6 +7,7 @@ const config = {
   preprocess: sequence([vitePreprocess(), preprocessMeltUI()]),
   kit: {
     adapter: adapter({ dynamic_origin: true }),
+    paths: { base: '/airtrail' },
     version: { name: process.env.npm_package_version },
     csrf: {
       checkOrigin: false,

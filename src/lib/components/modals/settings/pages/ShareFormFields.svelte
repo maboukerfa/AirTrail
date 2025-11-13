@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Infer, SuperForm } from 'sveltekit-superforms';
 
+  import { resolve } from '$app/paths';
   import DateField from '$lib/components/form-fields/DateField.svelte';
   import DateRangeField from '$lib/components/form-fields/DateRangeField.svelte';
   import { Button } from '$lib/components/ui/button';
@@ -45,7 +46,7 @@
           <span
             class="inline-flex items-center px-3 text-sm bg-muted border border-r-0 rounded-l-md whitespace-nowrap"
           >
-            /share/
+            {resolve("/share/")}
           </span>
           <Input
             bind:value={$formData.slug}

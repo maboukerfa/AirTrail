@@ -4,6 +4,7 @@
   import { defaults, type Infer, superForm } from 'sveltekit-superforms';
   import { zod } from 'sveltekit-superforms/adapters';
 
+  import { resolve } from '$app/paths';
   import { invalidateAll } from '$app/navigation';
   import * as Form from '$lib/components/ui/form';
   import { Input } from '$lib/components/ui/input';
@@ -37,11 +38,12 @@
   );
 
   const { form: formData, enhance, submitting } = form;
+  const actionPath = resolve(`/api/users/add`);
 </script>
 
 <Modal bind:open dialogOnly>
   <h2 class="text-lg font-medium">Add User</h2>
-  <form method="POST" action="/api/users/add" use:enhance>
+  <form method="POST" action={actionPath} use:enhance>
     <Form.Field {form} name="username">
       <Form.Control>
         {#snippet children({ props })}

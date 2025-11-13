@@ -7,7 +7,7 @@
     Map,
     Settings,
   } from '@o7/icon/lucide';
-
+  import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import {
     Dock,
@@ -62,20 +62,22 @@
       href: '/visited-countries',
     },
   ];
+
+  const homepagePath = resolve('/');
 </script>
 
 <div class="z-10 absolute bottom-6 left-1/2 translate-x-[-50%]">
   <div class="flex gap-4">
-    {#if page.url.pathname !== '/'}
+    {#if page.url.pathname !== homepagePath}
       <div transition:flyAndScale>
-        <DockFloatingItem href="/" label="Home">
+        <DockFloatingItem href={homepagePath} label="Home">
           <Map />
         </DockFloatingItem>
       </div>
     {/if}
     <Dock>
       <DockTooltipItem item={addFlightItem} />
-      {#if page.url.pathname === '/'}
+      {#if page.url.pathname === homepagePath}
         <DockTooltipItem item={listFlightsItem} />
         <DockTooltipItem item={flightsStatisticsItem} />
       {/if}

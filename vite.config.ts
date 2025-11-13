@@ -5,4 +5,5 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [o7Icon(), tailwindcss(), sveltekit()],
+  base: process.env.VITE_BASE_PATH || '/airtrail',
 });

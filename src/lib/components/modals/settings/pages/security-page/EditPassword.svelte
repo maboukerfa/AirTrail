@@ -3,6 +3,7 @@
   import { defaults, type Infer, superForm } from 'sveltekit-superforms';
   import { zod } from 'sveltekit-superforms/adapters';
 
+  import { resolve } from '$app/paths';
   import { Button } from '$lib/components/ui/button';
   import * as Form from '$lib/components/ui/form';
   import { PasswordInput } from '$lib/components/ui/input';
@@ -29,13 +30,14 @@
     },
   );
   const { form: formData, enhance } = form;
+  const actionPath = resolve(`/api/users/edit-password`);
 </script>
 
 <Button variant="outline" onclick={() => (open = true)}>Edit password</Button>
 
 <Modal bind:open dialogOnly>
   <h1 class="text-lg font-medium">Edit Password</h1>
-  <form method="POST" action="/api/users/edit-password" use:enhance>
+  <form method="POST" action={actionPath} use:enhance>
     <Form.Field {form} name="currentPassword">
       <Form.Control>
         {#snippet children({ props })}

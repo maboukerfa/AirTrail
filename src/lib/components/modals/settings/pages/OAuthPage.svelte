@@ -5,6 +5,7 @@
 
   import { PageHeader } from '.';
 
+  import { resolve } from '$app/paths';
   import { invalidateAll } from '$app/navigation';
   import { Locked } from '$lib/components/helpers';
   import * as Form from '$lib/components/ui/form';
@@ -38,6 +39,7 @@
     },
   );
   const { form: formData, enhance } = form;
+  const actionPath = resolve(`/api/oauth/save`);
 
   const changes = $derived.by(() => {
     return Object.entries($formData).some(([key, value]) => {
@@ -55,7 +57,7 @@
 >
   <form
     method="POST"
-    action="/api/oauth/save"
+    action={actionPath}
     autocomplete="off"
     class="space-y-4"
     use:enhance

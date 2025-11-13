@@ -6,6 +6,7 @@
   import EditShare from './EditShare.svelte';
   import PageHeader from './PageHeader.svelte';
 
+  import { resolve } from '$app/paths';
   import { Confirm } from '$lib/components/helpers';
   import { Button } from '$lib/components/ui/button';
   import { Card } from '$lib/components/ui/card';
@@ -31,7 +32,7 @@
   };
 
   async function copyShareUrl(slug: string) {
-    const url = `${window.location.origin}/share/${slug}`;
+    const url = `${window.location.origin}${resolve('/share')}/${slug}`;
     try {
       await navigator.clipboard.writeText(url);
       toast.success('Share URL copied to clipboard');
@@ -139,7 +140,7 @@
                     variant="outline"
                     size="icon"
                     onclick={() =>
-                      window.open(`/share/${share.slug}`, '_blank')}
+                      window.open(resolve(`/share/${share.slug}`), '_blank')}
                   >
                     <ExternalLink size={16} />
                   </Button>
